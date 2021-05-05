@@ -33,11 +33,7 @@ public class ProductController {
 
     @DeleteMapping(value = "/{id}")
     public void deleteProductById(@PathVariable Long id) {
-        try {
-            productService.deleteById(id);
-        } catch (EmptyResultDataAccessException e) {
-            throw new ProductNotFoundException("No product found with id = " + id);
-        }
+        productService.deleteById(id);
     }
 
     @PostMapping

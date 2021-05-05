@@ -1,11 +1,19 @@
 package ru.geekbrains.springmarket.exceptions;
 
+import java.util.Date;
+
 public class ErrorResponse {
     private int status;
     private String message;
-    private long timestamp;
+    private Date timestamp;
 
     public ErrorResponse() {
+    }
+
+    public ErrorResponse(int status, String message) {
+        this.status = status;
+        this.message = message;
+        this.timestamp = new Date();
     }
 
     public int getStatus() {
@@ -24,11 +32,11 @@ public class ErrorResponse {
         this.message = message;
     }
 
-    public long getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 }
