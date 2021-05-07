@@ -1,6 +1,9 @@
 package ru.geekbrains.springmarket.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.springmarket.entities.Product;
 import ru.geekbrains.springmarket.entities.dto.ProductDto;
@@ -33,6 +36,10 @@ public class ProductService {
 
     public List<ProductDto> findAllProductsDto() {
         return productRepository.findAll().stream().map(ProductDto::new).collect(Collectors.toList());
+    }
+
+    public Page<ProductDto> findAllProductsWithPages(Specification<Product> spec, int page, int pageSize) {
+        return productRepository.findAll(spec, PageRequest.of(page - 1, pageSize)).map(ProductDto::new);
     }
 
     public Product saveOrUpdate(Product product) {

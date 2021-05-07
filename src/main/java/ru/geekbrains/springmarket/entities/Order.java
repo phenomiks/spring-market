@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,13 +18,13 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
-    @Column(name = "total_cost", nullable = false)
-    private BigDecimal totalCost;
+    @Column(name = "total_price", nullable = false)
+    private BigDecimal totalPrice;
 
-    @Column(name = "address", length = 255)
+    @Column(name = "address")
     private String address;
 
     @CreationTimestamp
@@ -38,6 +39,18 @@ public class Order {
     private List<OrderItem> orderItems;
 
     public Order() {
+    }
+
+    public Order(Cart cart, String address, User owner) {
+        this.owner = owner;
+        this.address = address;
+        this.totalPrice = cart.getTotalPrice();
+        this.orderItems = new ArrayList<>();
+        for (CartItem cartItem : cart.getCartItems()) {
+            OrderItem orderItem = new OrderItem(cartItem);
+            orderItem.setOrder(this);
+            this.orderItems.add(orderItem);
+        }
     }
 
     public Long getId() {
@@ -64,12 +77,12 @@ public class Order {
         this.owner = owner;
     }
 
-    public BigDecimal getTotalCost() {
-        return totalCost;
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotalCost(BigDecimal totalCost) {
-        this.totalCost = totalCost;
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getAddress() {

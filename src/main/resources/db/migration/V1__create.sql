@@ -55,12 +55,12 @@ CREATE TABLE products_categories
 
 CREATE TABLE orders
 (
-    id         BIGSERIAL PRIMARY KEY,
-    owner_id   BIGINT         NOT NULL REFERENCES users (id),
-    total_cost NUMERIC(10, 2) NOT NULL,
-    address    VARCHAR(255),
-    created_at TIMESTAMP DEFAULT current_timestamp,
-    updated_at TIMESTAMP DEFAULT current_timestamp
+    id          BIGSERIAL PRIMARY KEY,
+    owner_id    BIGINT         NOT NULL REFERENCES users (id),
+    total_price NUMERIC(10, 2) NOT NULL,
+    address     VARCHAR(255),
+    created_at  TIMESTAMP DEFAULT current_timestamp,
+    updated_at  TIMESTAMP DEFAULT current_timestamp
 );
 
 CREATE TABLE orders_items
@@ -68,6 +68,7 @@ CREATE TABLE orders_items
     id                BIGSERIAL PRIMARY KEY,
     order_id          BIGINT REFERENCES orders (id),
     product_id        BIGINT REFERENCES products (id),
+    title             VARCHAR(255)   NOT NULL,
     quantity          INT            NOT NULL,
     price_per_product NUMERIC(10, 2) NOT NULL,
     created_at        TIMESTAMP DEFAULT current_timestamp,
