@@ -1,4 +1,4 @@
-package ru.geekbrains.springmarket.specifications;
+package ru.geekbrains.springmarket.repositories.specifications;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.MultiValueMap;

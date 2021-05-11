@@ -3,7 +3,6 @@ package ru.geekbrains.springmarket.controllers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.MultiValueMap;
@@ -12,9 +11,7 @@ import ru.geekbrains.springmarket.entities.Product;
 import ru.geekbrains.springmarket.entities.dto.ProductDto;
 import ru.geekbrains.springmarket.exceptions.ProductNotFoundException;
 import ru.geekbrains.springmarket.services.ProductService;
-import ru.geekbrains.springmarket.specifications.ProductSpecifications;
-
-import java.util.List;
+import ru.geekbrains.springmarket.repositories.specifications.ProductSpecifications;
 
 @RestController
 @RequestMapping(value = "/api/v1/products")
