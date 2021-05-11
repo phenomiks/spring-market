@@ -23,6 +23,9 @@ public class OrderItem {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @Column(name = "title", nullable = false, length = 255)
+    private String title;
+
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
@@ -38,6 +41,13 @@ public class OrderItem {
     private LocalDateTime updatedAt;
 
     public OrderItem() {
+    }
+
+    public OrderItem(CartItem cartItem) {
+        this.product = cartItem.getProduct();
+        this.title = cartItem.getTitle();
+        this.quantity = cartItem.getQuantity();
+        this.pricePerProduct = cartItem.getPricePerProduct();
     }
 
     public Long getId() {
@@ -62,6 +72,14 @@ public class OrderItem {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Integer getQuantity() {
