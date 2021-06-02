@@ -18,7 +18,9 @@ public class CartService {
     }
 
     public Cart findCartByOwnerId(Long id) {
-        return cartRepository.findById(id).orElse(new Cart(id));
+        Cart cart = cartRepository.findById(id).orElse(new Cart(id));
+        recalculateCart(cart);
+        return cart;
     }
 
     public Cart updateCart(Cart cart) {
@@ -29,6 +31,7 @@ public class CartService {
     public Cart clearCart(Long id) {
         Cart cart = findCartByOwnerId(id);
         cart.getCartItems().clear();
+        cart.setTotalPrice(new BigDecimal("0.0"));
         return cartRepository.save(cart);
     }
 

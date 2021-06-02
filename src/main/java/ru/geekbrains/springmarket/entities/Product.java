@@ -1,5 +1,6 @@
 package ru.geekbrains.springmarket.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -31,6 +32,7 @@ public class Product {
     private LocalDateTime updatedAt;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "products_categories",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
