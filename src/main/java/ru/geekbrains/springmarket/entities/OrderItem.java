@@ -19,9 +19,10 @@ public class OrderItem {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+//    @ManyToOne
+//    @JoinColumn(name = "product_id")
+//    private Product product;
+    private Long productId;
 
     @Column(name = "title", nullable = false, length = 255)
     private String title;
@@ -44,7 +45,8 @@ public class OrderItem {
     }
 
     public OrderItem(CartItem cartItem) {
-        this.product = cartItem.getProduct();
+//        this.product = cartItem.getProduct();
+        this.productId = cartItem.getProductId();
         this.title = cartItem.getTitle();
         this.quantity = cartItem.getQuantity();
         this.pricePerProduct = cartItem.getPricePerProduct();
@@ -66,12 +68,12 @@ public class OrderItem {
         this.order = order;
     }
 
-    public Product getProduct() {
-        return product;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getTitle() {

@@ -14,8 +14,8 @@ public class OrderItemDto {
     private BigDecimal total_price;
 
     public OrderItemDto(OrderItem orderItem) {
-        this.productId = orderItem.getProduct().getId();
-        this.productTitle = orderItem.getProduct().getTitle();
+        this.productId = orderItem.getProductId();
+        this.productTitle = orderItem.getTitle();
         this.quantity = orderItem.getQuantity();
         this.pricePerProduct = orderItem.getPricePerProduct();
         this.total_price = pricePerProduct.multiply(new BigDecimal(quantity));

@@ -1,10 +1,12 @@
 package ru.geekbrains.springmarket.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.springmarket.entities.Cart;
 import ru.geekbrains.springmarket.entities.User;
+import ru.geekbrains.springmarket.entities.dto.CartDto;
 import ru.geekbrains.springmarket.services.CartService;
 import ru.geekbrains.springmarket.services.ProductService;
 import ru.geekbrains.springmarket.services.UserService;
@@ -13,6 +15,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping(value = "/api/v1/cart")
+@CrossOrigin("*")
 public class CartController {
     private final CartService cartService;
     private final UserService userService;
@@ -26,9 +29,17 @@ public class CartController {
     }
 
     @GetMapping
-    public Cart getCart(Principal principal) {
+    public CartDto getCart(Principal principal) {
         User user = userService.findByUsername(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return cartService.findCartByOwnerId(user.getId());
+        Cart cart = cartService.findCartByOwnerId(user.getId());
+        return new CartDto(cart);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<?> addProductToCart(Principal principal, @RequestParam(name = "product_id") Long productId) {
+        User user = userService.findByUsername(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        cartService.addToCart(user.getId(), productId);
+        return ResponseEntity.ok("");
     }
 
     @PostMapping
@@ -37,8 +48,9 @@ public class CartController {
     }
 
     @DeleteMapping
-    public Cart clearCart(Principal principal) {
+    public CartDto clearCart(Principal principal) {
         User user = userService.findByUsername(principal.getName()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return cartService.clearCart(user.getId());
+        Cart cart = cartService.clearCart(user.getId());
+        return new CartDto(cart);
     }
 }

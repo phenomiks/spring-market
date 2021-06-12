@@ -20,7 +20,7 @@ public class RedisConfig {
     }
 
     @Bean
-    RedisMessageListenerContainer redisContainer(RedisConnectionFactory redisConnectionFactory) {
+    public RedisMessageListenerContainer redisContainer(RedisConnectionFactory redisConnectionFactory) {
         final RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(redisConnectionFactory);
         return container;

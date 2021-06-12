@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/v1/orders")
+@CrossOrigin("*")
 public class OrderController {
     public static final String REQUEST_QUEUE_NAME = "requestQueue";
 

@@ -15,6 +15,7 @@ import ru.geekbrains.springmarket.repositories.specifications.ProductSpecificati
 
 @RestController
 @RequestMapping(value = "/api/v1/products")
+@CrossOrigin("*")
 @Api("Controller for interacting with the product table in the database")
 public class ProductController {
     private final ProductService productService;
