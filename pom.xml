@@ -11,7 +11,7 @@
     </parent>
     <groupId>ru.geekbrains</groupId>
     <artifactId>spring-market</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>spring-market</name>
     <description>Spring Market</description>
 

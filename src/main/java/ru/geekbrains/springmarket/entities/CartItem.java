@@ -14,7 +14,7 @@ public class CartItem {
     @Indexed
     private Cart cart;
 
-    private Product product;
+    private Long productId;
     private String title;
     private Integer quantity;
     private BigDecimal pricePerProduct;
@@ -23,7 +23,7 @@ public class CartItem {
     }
 
     public CartItem(Product product) {
-        this.product = product;
+        this.productId = product.getId();
         this.title = product.getTitle();
         this.quantity = 1;
         this.pricePerProduct = product.getPrice();
@@ -45,12 +45,12 @@ public class CartItem {
         this.cart = cart;
     }
 
-    public Product getProduct() {
-        return product;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void getProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getTitle() {
