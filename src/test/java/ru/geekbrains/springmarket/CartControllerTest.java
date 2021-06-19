@@ -61,8 +61,8 @@ public class CartControllerTest {
         mvc.perform(get("/api/v1/cart")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.ownerId", is(1)))
-                .andExpect(jsonPath("$.totalPrice", is(0.0)));
+                .andExpect(jsonPath("$.items").exists())
+                .andExpect(jsonPath("$.totalPrice").exists());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class CartControllerTest {
             )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.ownerId", is(2)))
-                .andExpect(jsonPath("$.cartItems[0].product.title", is("Adobe Photoshop Elements 2021")))
+                .andExpect(jsonPath("$.cartItems[0].title", is("Adobe Photoshop Elements 2021")))
                 .andDo(MockMvcResultHandlers.print());
     }
 
