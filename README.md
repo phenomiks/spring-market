@@ -27,12 +27,42 @@
 6. JUnit, Mockito: проведено модульное и интеграционное тестирование некоторых компонентов проекта;
 7. REST, SOAP, JAXB.
    * REST: основной протокол для взаимодействия и обмена данными с сервером;
-   * SOAP: дополнительно добавлен SOAP протокол для получения всех товаров или товара по идентификатору.
+   * SOAP: дополнительно добавлен SOAP протокол для получения всех товаров или товара по идентификатору;
    * JAXB: генерация классов на основе XML Schema (XSD).
 8. DTO: возврат DTO сущности в формате JSON в качестве ответа сервера;
 9. Exception Handling: реализована обработка исключений с помощью Spring для REST API;
 10. Spring Data Specifications: реализация фильтра по названию, минимальной и максимальной цене через
     фильтрацию выборки из базы при помощи спецификаций.
+
+### Выполнение SOAP-запросов
+
+1. Запрос для получения описания веб-сервиса (WSDL):
+   ```
+   http://localhost:8081/app/ws/products.wsdl
+   ```
+2. Запрос для получения списка всех товаров по адресу [localhost:8081/app/ws](http://localhost:8081/app/ws)
+   с телом:
+   ```xml
+   <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:f="http://www.geekbrains.ru/springmarket/ws/products">
+       <soapenv:Header/>
+       <soapenv:Body>
+           <f:getAllProductsRequest/>
+       </soapenv:Body>
+   </soapenv:Envelope>
+   ```
+3. Запрос для получения товара по идентификатору по адресу [localhost:8081/app/ws](http://localhost:8081/app/ws)
+   с телом:
+   ```xml
+   <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:f="http://www.geekbrains.ru/springmarket/ws/products">
+       <soapenv:Header/>
+       <soapenv:Body>
+            <f:getProductByIdRequest>
+                <f:id>{id}</f:id>
+            </f:getProductByIdRequest>
+       </soapenv:Body>
+   </soapenv:Envelope>
+   ```
+   где {id} - идентификатор товара.
 
 ## Установка
 
