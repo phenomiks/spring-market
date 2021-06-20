@@ -8,6 +8,8 @@
 
 package ru.geekbrains.springmarket.soap.products;
 
+import ru.geekbrains.springmarket.ws.products.SoapProduct;
+
 import javax.xml.bind.annotation.XmlRegistry;
 
 
@@ -61,11 +63,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Product }
+     * Create an instance of {@link SoapProduct }
      * 
      */
-    public Product createProduct() {
-        return new Product();
+    public SoapProduct createSoapProduct() {
+        return new SoapProduct();
     }
 
     /**

@@ -25,17 +25,17 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     // http://localhost:8081/app/ws/products.wsdl
     @Bean(name = "products")
-    public DefaultWsdl11Definition productsWsdl11Definition(XsdSchema studentsSchema) {
+    public DefaultWsdl11Definition productsWsdl11Definition(XsdSchema productsSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("ProductsPort");
         wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setTargetNamespace("http://www.geekbrains.ru/springmarket/products");
-        wsdl11Definition.setSchema(studentsSchema);
+        wsdl11Definition.setSchema(productsSchema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema studentsSchema() {
+    public XsdSchema productsSchema() {
         return new SimpleXsdSchema(new ClassPathResource("products.xsd"));
     }
 }
