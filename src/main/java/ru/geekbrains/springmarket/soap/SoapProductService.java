@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.springmarket.entities.Product;
 import ru.geekbrains.springmarket.repositories.ProductRepository;
+import ru.geekbrains.springmarket.soap.products.SoapProduct;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,8 +26,8 @@ public class SoapProductService {
         return productRepository.findAll();
     }
 
-    public ru.geekbrains.springmarket.soap.products.Product convertToSoapProduct(Product product) {
-        ru.geekbrains.springmarket.soap.products.Product soapProduct = new ru.geekbrains.springmarket.soap.products.Product();
+    public SoapProduct convertToSoapProduct(Product product) {
+        SoapProduct soapProduct = new SoapProduct();
         soapProduct.setId(product.getId());
         soapProduct.setTitle(product.getTitle());
         soapProduct.setPrice(product.getPrice());

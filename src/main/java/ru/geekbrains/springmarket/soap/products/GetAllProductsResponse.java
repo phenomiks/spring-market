@@ -8,6 +8,8 @@
 
 package ru.geekbrains.springmarket.soap.products;
 
+import ru.geekbrains.springmarket.soap.products.SoapProduct;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -27,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="products" type="{http://www.geekbrains.ru/springmarket/ws/products}product" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="products" type="{http://www.geekbrains.ru/springmarket/ws/products}soapProduct" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -44,7 +46,7 @@ import javax.xml.bind.annotation.XmlType;
 public class GetAllProductsResponse {
 
     @XmlElement(required = true)
-    protected List<Product> products;
+    protected List<SoapProduct> products;
 
     /**
      * Gets the value of the products property.
@@ -64,13 +66,13 @@ public class GetAllProductsResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Product }
+     * {@link SoapProduct }
      * 
      * 
      */
-    public List<Product> getProducts() {
+    public List<SoapProduct> getProducts() {
         if (products == null) {
-            products = new ArrayList<Product>();
+            products = new ArrayList<SoapProduct>();
         }
         return this.products;
     }
